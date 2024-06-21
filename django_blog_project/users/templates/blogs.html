@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %} Blog - Register {% endblock title %}
+
+{% block content %}
+<!-- BREADCRUMB AREA START -->
+<div class="ltn__breadcrumb-area ltn__breadcrumb-area-4 ltn__breadcrumb-color-white---">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ltn__breadcrumb-inner text-center">
+                    <h1 class="ltn__page-title">Blog</h1>
+                    <div class="ltn__breadcrumb-list">
+                        <ul>
+                            <li>Register</li>
+                            <li>Blog</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- BREADCRUMB AREA END -->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-hover table-responsive">
+                <thead>
+                    <tr>
+                    <th>Number</th>
+                    <th>Image</th>
+                    <th>Author</th>
+                    <th>Title</th>
+                    <th>Publish Date</th>
+                    <th>Edit</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for blog in blogs %}
+                    <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td><img class="rounded-circle" style="max-width: 100px; height: auto;" src="{{ blog.image.url }} " style="cursor: pointer;"/></td>
+                    <td>{{ blog.author }}</td>
+                    <td>{{ blog.title }}</td>
+                    <td>{{ blog.published_at }}</td>
+                    <td>
+                        <a href="{% url 'update-blog' blog.id %}"><button class="btn btn-primary mr-4">Update</button></a>
+                        <a href="{% url 'delete-blog' blog.id %}"><button class="btn btn-danger mr-4">Delete</button></a>
+                    </td>
+                </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+
+
+    </div>
+</div>
+
+
+
+{% endblock content %}
